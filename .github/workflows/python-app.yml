@@ -38,5 +38,5 @@ jobs:
 
     - name: Commit and push if changes
       run: |
-        git commit -am "Update data"
+        git add . && git commit -m "Update data"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pAulseperformance/coinbase-appstore-rankings.git HEAD:main
