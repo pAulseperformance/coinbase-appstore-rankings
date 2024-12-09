@@ -31,6 +31,6 @@ jobs:
       run: python main.py
 
     - name: Commit and push if changes
-      git add .
-      git commit -m "Update data" 
-      git push  
+      run: |
+        git add .
+        git commit -m "Update data" && git push  
