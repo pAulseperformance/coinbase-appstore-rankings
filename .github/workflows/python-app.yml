@@ -17,6 +17,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Set up Git user for commit
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -28,11 +33,10 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run script
-      run: python main.py
+      run: |
+        python main.py > file.txt
 
     - name: Commit and push if changes
       run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
         git diff --exit-code || git commit -am "Update data"
-        git push https://${{ secrets.GH_PAT }}@github.com/pAulseperformance/coinbase-appstore-rankings.git HEAD:main
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pAulseperformance/coinbase-appstore-rankings.git HEAD:main
