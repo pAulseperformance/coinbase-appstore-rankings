@@ -34,7 +34,7 @@ jobs:
 
     - name: Run script
       run: |
-        python main.py > file.txt
+        python main.py >> file.txt
 
     - name: Commit and push if changes
       run: |
